@@ -2,10 +2,10 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Arquivo Log #  Abaixo temos o Log de execução tanto do servidor quanto do cliente, para a execução com as flags --show e/ou --edit para cada um deles.  Client --show #  Da mesma forma, com o servidor rodando, ao executar python client.py --show podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl. (o trafego recebido pode ser visto no log de envio do server) O primeiro trecho de execução mostra o tráfego referente ao handshake entre o cliente e o servidor, onde podemos ver ao final da execução o tipo de criptografia utilizado para a comunicação.">
+<meta name=description content="Arquivo Log #  Abaixo temos o Log de execução tanto do servidor quanto do cliente, para a execução com as flags --show e/ou --edit para cada um deles.  Client --show #  Da mesma forma, com o servidor rodando, ao executar python client.py --show podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl (o trafego recebido pode ser visto no log de envio do server).">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content="Log">
-<meta property="og:description" content="Arquivo Log #  Abaixo temos o Log de execução tanto do servidor quanto do cliente, para a execução com as flags --show e/ou --edit para cada um deles.  Client --show #  Da mesma forma, com o servidor rodando, ao executar python client.py --show podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl. (o trafego recebido pode ser visto no log de envio do server) O primeiro trecho de execução mostra o tráfego referente ao handshake entre o cliente e o servidor, onde podemos ver ao final da execução o tipo de criptografia utilizado para a comunicação.">
+<meta property="og:description" content="Arquivo Log #  Abaixo temos o Log de execução tanto do servidor quanto do cliente, para a execução com as flags --show e/ou --edit para cada um deles.  Client --show #  Da mesma forma, com o servidor rodando, ao executar python client.py --show podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl (o trafego recebido pode ser visto no log de envio do server).">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://gobbedu.github.io/Secure-KVS/docs/kvs-seguro/log/"><meta property="article:section" content="docs">
 <meta property="article:published_time" content="2023-02-23T10:18:19-03:00">
@@ -15,7 +15,7 @@
 <link rel=icon href=/Secure-KVS/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/Secure-KVS/book.min.1f20bb1eca1a001a8f11cb7468cc543388e0b3a832152dcb8e79c675fffb86ea.css integrity="sha256-HyC7HsoaABqPEct0aMxUM4jgs6gyFS3LjnnGdf/7huo=" crossorigin=anonymous>
 <script defer src=/Secure-KVS/flexsearch.min.js></script>
-<script defer src=/Secure-KVS/en.search.min.9af65184cf5f59be85126143804a769db227266dbf723909f9cf5fdde6dac6e1.js integrity="sha256-mvZRhM9fWb6FEmFDgEp2nbInJm2/cjkJ+c9f3ebaxuE=" crossorigin=anonymous></script>
+<script defer src=/Secure-KVS/en.search.min.cf96f38393cedac5c1e68bfbd95dc1b7340d15913b649323da35949135c54f2e.js integrity="sha256-z5bzg5PO2sXB5ov72V3BtzQNFZE7ZJMj2jWUkTXFTy4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr class=theme-light>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -45,6 +45,9 @@
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/cliente/>Cliente</a>
+</li>
+<li>
+<a href=/Secure-KVS/docs/kvs-seguro/inspecion%C3%A1vel/>Inspecionável</a>
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/servidor/>Servidor</a>
@@ -106,7 +109,7 @@ Abaixo temos o Log de execução tanto do <strong>servidor</strong> quanto do <s
 Client --show
 <a class=anchor href=#client---show>#</a>
 </h2>
-<p>Da mesma forma, com o servidor rodando, ao executar <code>python client.py --show</code> podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl. (o trafego recebido pode ser visto no log de envio do server)
+<p>Da mesma forma, com o servidor rodando, ao executar <code>python client.py --show</code> podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl (o trafego recebido pode ser visto no log de envio do server).
 <blockquote class="book-hint warning">
 O primeiro trecho de execução mostra o tráfego referente ao <em>handshake</em> entre o cliente e o servidor, onde podemos ver ao final da execução o tipo de criptografia utilizado para a comunicação.
 </blockquote>
@@ -160,7 +163,7 @@ Bem-vindo ao shell do Key-Value Store. Digite &#39;help&#39; para listar os coma
 </code></pre></div>
 </div>
 </details>
-<p>Em seguida, podemos ver o conteúdo das mensagens enviadas ao interagir com a shell do cliente. Da maneira que foi implementado, é possível ver a mensagem que está para ser enviada (<strong>send: original</strong>) e a mensagem sendo efetivamente enviada pelo ssl (<strong>send: ssl</strong>). Desse modo, a execução abaixo é uma prova de que o TLS <strong>tem sigílo</strong>, pois a mensagem que está sendo enviada pelo socket ssl claramente foi cifrada, em comparação com a mensagem original que está em plena vista.</p>
+<p>Em seguida podemos ver o conteúdo das mensagens enviadas ao interagir com a shell do cliente. Da maneira que foi implementado é possível ver a mensagem que está para ser enviada (<strong>send: original</strong>) e a mensagem sendo efetivamente enviada pelo ssl (<strong>send: ssl</strong>). Desse modo, a execução abaixo é uma prova de que o TLS <strong>tem sigílo</strong>, pois a mensagem que está sendo enviada pelo socket ssl claramente foi cifrada, em comparação com a mensagem original que está em plena vista.</p>
 <details open><summary>Tráfego cliente</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>(KVS) show
@@ -241,7 +244,7 @@ ssl.SSLError: [SSL: SSLV3_ALERT_BAD_RECORD_MAC] sslv3 alert bad record mac (_ssl
 </code></pre></div>
 </div>
 </details>
-<p>Podemos ver que o erro apontado, <code>SSLV3_ALERT_BAD_RECORD_MAC</code>, indica que o protocolo não conseguiu verificar a autenticidade da mensagem - <strong>Message Authentication Codes (MAC)</strong>, devido a alteração que fizemos no corpo dela.</p>
+<p>Podemos ver que o erro apontado, <code>SSLV3_ALERT_BAD_RECORD_MAC</code>, indica que o protocolo não conseguiu verificar a autenticidade da mensagem - <strong>Message Authentication Codes (MAC)</strong>, devido à alteração que fizemos no corpo dela.</p>
 <blockquote class="book-hint warning">
 Provando então a integridade do TLS para o cliente.
 </blockquote>
@@ -249,9 +252,11 @@ Provando então a integridade do TLS para o cliente.
 Server --show
 <a class=anchor href=#server---show>#</a>
 </h2>
-<p>Para ver o tráfego abaixo, é necessário rodar <code>python server.py --show</code> ou <code>python server.py --edit</code>.</p>
-<p>Não só do --show, este log representa o tráfego no servidor para a flag --edit também. Deste modo, o tráfego do lado dos servidor aparece como mostrado abaixo:</p>
-<p><details><summary>Handshake server</summary>
+<p>Para ver o tráfego abaixo é necessário rodar uma das duas opções abaixo:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py>python server<span style=color:#f92672>.</span>py <span style=color:#f92672>--</span>show
+python  server<span style=color:#f92672>.</span>py <span style=color:#f92672>--</span>edit
+</code></pre></div><p>Não só do --show, este log representa o tráfego no servidor para a flag --edit também. Deste modo, o tráfego do lado dos servidor aparece como mostrado abaixo:</p>
+<details><summary>Handshake server</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>Aguardando conexões...
 ========== send:  ssl ==========
@@ -384,45 +389,47 @@ Server --show
 Cipher: (&#39;TLS_AES_256_GCM_SHA384&#39;, &#39;TLSv1.3&#39;, 256)
 Conexão estabelecida com (&#39;127.0.0.1&#39;, 33720)
 
-</code></pre></div><ul>
-<li>Abaixo temos a resposta do servidor para a sequencia de comandos</li>
+</code></pre></div>
+</div>
+</details>
+<ul>
+<li>Abaixo temos a resposta do servidor para a sequência de comandos</li>
 </ul>
 <ol>
 <li>show</li>
-<li>update 3 3</li>
-<li>create 4 4</li>
-<li>help</li>
+<li>update 4 4</li>
+<li>create 5 5</li>
+<li>delete 4</li>
 <li>exit</li>
 </ol>
-</div>
-</details>
-======== send: original ========
-00000000: 7b 31 3a 20 31 2c 20 32 3a 20 32 2c 20 33 3a 20 {1: 1, 2: 2, 3:
-00000010: 34 2c 20 27 6a 6f 61 6f 27 3a 20 31 7d 4, &lsquo;joao&rsquo;: 1}
-========== send: ssl ==========
-00000000: 17 03 03 00 2e 50 65 5b 7f 3b 1d 96 c8 bf e8 05 &mldr;..Pe[;&mldr;&mldr;
-00000010: 93 af 99 21 38 07 f8 c2 ac c5 41 18 f5 a7 a5 75 &mldr;!8&mldr;..A&mldr;.u
-00000020: 25 3a e8 67 af dd 86 09 32 35 67 58 e5 99 02 2b %:.g&mldr;.25gX&mldr;+
-00000030: ac 8b 8c &mldr;
-======== send: original ========
-00000000: 4e 6f 6e 65 None
-========== send: ssl ==========
-00000000: 17 03 03 00 15 0f 36 39 0e d5 7f af 38 10 03 80 &mldr;&mldr;69&mldr;8&mldr;
-00000010: a1 43 df 4c 27 7e a0 77 4c 03 .C.L'~.wL.
-======== send: original ========
-00000000: 4e 6f 6e 65 None
-========== send: ssl ==========
-00000000: 17 03 03 00 15 61 af e9 89 07 f7 a9 79 2b b9 8c &mldr;..a&mldr;&mldr;y+..
-00000010: 15 1e 33 f0 5e 29 36 be 44 f5 ..3.^)6.D.
-======== send: original ========
-00000000: 7b 31 3a 20 31 2c 20 32 3a 20 32 2c 20 33 3a 20 {1: 1, 2: 2, 3:
-00000010: 33 2c 20 27 6a 6f 61 6f 27 3a 20 31 2c 20 34 3a 3, &lsquo;joao&rsquo;: 1, 4:
-00000020: 20 34 7d 4}
-========== send: ssl ==========
-00000000: 17 03 03 00 34 29 eb a5 9f 35 eb dc 44 3b e8 6d &mldr;.4)&mldr;5..D;.m
-00000010: b9 13 20 f3 8b ef 72 e1 00 88 e6 88 79 60 6b 2b .. &mldr;r&mldr;..y<code>k+ 00000020: de 8b 1f 3a d3 a7 02 32 b6 fb f6 c3 9b 7f 30 7c ...:...2.....0| 00000030: 39 63 49 d2 55 13 4e 3a 60 9cI.U.N:</code></p>
 <details open><summary>Mensagem servidor</summary>
 <div class=markdown-inner>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>======== send: original ========
+00000000: 7b 31 3a 20 31 2c 20 32  3a 20 32 2c 20 33 3a 20  {1: 1, 2: 2, 3:
+00000010: 33 2c 20 27 6a 6f 61 6f  27 3a 20 32 2c 20 34 3a  3, &#39;joao&#39;: 2, 4:
+00000020: 20 35 7d                                           5}
+========== send:  ssl ==========
+00000000: 17 03 03 00 34 fc fe ea  e6 ae c6 f7 e2 c0 58 cd  ....4.........X.
+00000010: 51 ef 4d 4d d9 f0 34 87  f0 00 49 6c ea ce 38 5e  Q.MM..4...Il..8^
+00000020: f3 3c 01 d9 88 f5 c1 1e  a9 7e 50 0d 2e 7a 33 2c  .&lt;.......~P..z3,
+00000030: 9a cc 87 ca dd e9 f3 2f  2d                       ......./-
+======== send: original ========
+00000000: 4f 6b                                             Ok
+========== send:  ssl ==========
+00000000: 17 03 03 00 13 c3 8c 5a  61 fa 3f 5c 96 d0 90 57  .......Za.?\...W
+00000010: f0 e8 91 5b f6 8d f5 be                           ...[....
+======== send: original ========
+00000000: 4f 6b                                             Ok
+========== send:  ssl ==========
+00000000: 17 03 03 00 13 97 f6 ce  70 e3 8a 1e 6a fb 51 c4  ........p...j.Q.
+00000010: 1d f0 2e d8 0e 45 b6 b4                           .....E..
+======== send: original ========
+00000000: 4f 6b                                             Ok
+========== send:  ssl ==========
+00000000: 17 03 03 00 13 d7 00 ac  f7 95 31 ee 72 a7 fe 57  ..........1.r..W
+00000010: 8f 96 82 de c7 19 04 4d                           .......M
+
+</code></pre></div>
 </div>
 </details>
 </article>

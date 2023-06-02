@@ -2,12 +2,12 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Servidor KVS #  Responsável por receber comandos CRUD de um cliente autenticado e executá-los no banco de dados, enviando o resultado das opearções de volta para o cliente. Tem acesso ao bando de dados. pode se comunicar com um cliente de cada vez apenas uma vez.  Execução #  Para inicializar o servidor, basta executar
-python server.py A partir de então, o servidor ficara na escuta por conexões, e ao receber uma fica executando as operações enviadas até que o comando exit seja enviado, ou que o processo seja terminado com um Ctrl + C.">
+<meta name=description content="Servidor KVS #  Responsável por receber comandos CRUD de um cliente autenticado e executá-los no banco de dados, enviando o resultado das operações de volta para o cliente. Tem acesso ao banco de dados, podendo se comunicar com um cliente somente uma vez.  Execução #  Para inicializar o servidor basta executar
+python server.py A partir de então o servidor fica na escuta por conexões e ao receber uma, executa as operações solicitadas até que o comando exit seja enviado, ou que o processo seja terminado com um Ctrl + C.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Servidor KVS #  Responsável por receber comandos CRUD de um cliente autenticado e executá-los no banco de dados, enviando o resultado das opearções de volta para o cliente. Tem acesso ao bando de dados. pode se comunicar com um cliente de cada vez apenas uma vez.  Execução #  Para inicializar o servidor, basta executar
-python server.py A partir de então, o servidor ficara na escuta por conexões, e ao receber uma fica executando as operações enviadas até que o comando exit seja enviado, ou que o processo seja terminado com um Ctrl + C.">
+<meta property="og:description" content="Servidor KVS #  Responsável por receber comandos CRUD de um cliente autenticado e executá-los no banco de dados, enviando o resultado das operações de volta para o cliente. Tem acesso ao banco de dados, podendo se comunicar com um cliente somente uma vez.  Execução #  Para inicializar o servidor basta executar
+python server.py A partir de então o servidor fica na escuta por conexões e ao receber uma, executa as operações solicitadas até que o comando exit seja enviado, ou que o processo seja terminado com um Ctrl + C.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://gobbedu.github.io/Secure-KVS/docs/kvs-seguro/servidor/"><meta property="article:section" content="docs">
 <title>Servidor | Relatório Redes III</title>
@@ -15,7 +15,7 @@ python server.py A partir de então, o servidor ficara na escuta por conexões, 
 <link rel=icon href=/Secure-KVS/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/Secure-KVS/book.min.1f20bb1eca1a001a8f11cb7468cc543388e0b3a832152dcb8e79c675fffb86ea.css integrity="sha256-HyC7HsoaABqPEct0aMxUM4jgs6gyFS3LjnnGdf/7huo=" crossorigin=anonymous>
 <script defer src=/Secure-KVS/flexsearch.min.js></script>
-<script defer src=/Secure-KVS/en.search.min.9af65184cf5f59be85126143804a769db227266dbf723909f9cf5fdde6dac6e1.js integrity="sha256-mvZRhM9fWb6FEmFDgEp2nbInJm2/cjkJ+c9f3ebaxuE=" crossorigin=anonymous></script>
+<script defer src=/Secure-KVS/en.search.min.cf96f38393cedac5c1e68bfbd95dc1b7340d15913b649323da35949135c54f2e.js integrity="sha256-z5bzg5PO2sXB5ov72V3BtzQNFZE7ZJMj2jWUkTXFTy4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr class=theme-light>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -45,6 +45,9 @@ python server.py A partir de então, o servidor ficara na escuta por conexões, 
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/cliente/>Cliente</a>
+</li>
+<li>
+<a href=/Secure-KVS/docs/kvs-seguro/inspecion%C3%A1vel/>Inspecionável</a>
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/servidor/ class=active>Servidor</a>
@@ -102,15 +105,15 @@ Servidor KVS
 <a class=anchor href=#servidor-kvs>#</a>
 </h1>
 <blockquote class="book-hint info">
-Responsável por receber comandos CRUD de um cliente autenticado e executá-los no banco de dados, enviando o resultado das opearções de volta para o cliente. <strong>Tem</strong> acesso ao bando de dados. pode se comunicar com um cliente de cada vez apenas uma vez.
+Responsável por receber comandos CRUD de um cliente autenticado e executá-los no banco de dados, enviando o resultado das operações de volta para o cliente. <strong>Tem</strong> acesso ao banco de dados, podendo se comunicar com um cliente somente uma vez.
 </blockquote>
 <h2 id=execução>
 Execução
 <a class=anchor href=#execu%c3%a7%c3%a3o>#</a>
 </h2>
-<p>Para inicializar o servidor, basta executar</p>
+<p>Para inicializar o servidor basta executar</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>python server.py
-</code></pre></div><p>A partir de então, o servidor ficara na escuta por conexões, e ao receber uma fica executando as operações enviadas até que o comando <code>exit</code> seja enviado, ou que o processo seja terminado com um <code>Ctrl + C</code>.</p>
+</code></pre></div><p>A partir de então o servidor fica na escuta por conexões e ao receber uma, executa as operações solicitadas até que o comando <code>exit</code> seja enviado, ou que o processo seja terminado com um <code>Ctrl + C</code>.</p>
 <details open><summary>Introdução servidor</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>Aguardando conexões...
@@ -122,12 +125,12 @@ Conexão estabelecida com (&#39;127.0.0.1&#39;, 54120)
 Kernel
 <a class=anchor href=#kernel>#</a>
 </h2>
-<p>Existem três partes para o kernel do servidor. Onde cada uma serve um propósito diferente ao longo da execução e testes no TLS.</p>
+<p>Existem três partes para o kernel do servidor, onde cada uma serve um propósito diferente ao longo da execução e testes no TLS.</p>
 <h2 id=kernel-server>
 Kernel Server
 <a class=anchor href=#kernel-server>#</a>
 </h2>
-<p>O primeira kernel é a base para um server genérico <code>Server</code>, que apenas carrega os certificados e fica na espera de uma conexão segura com certificado válido. Deixando a implementação da lógica de interação com o cliente para depois. Novamente, esta implementação aceita apenas uma conexão de um cliente.</p>
+<p>O primeiro kernel é a base para um server genérico, a classe <code>Server</code>, que apenas carrega os certificados e fica na espera de uma conexão segura com certificado válido. Deixando a implementação da lógica de interação com o cliente para depois. Novamente esta implementação aceita apenas uma conexão de um cliente.</p>
 <details open><summary>classe Server</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Server</span>:
@@ -171,7 +174,7 @@ Kernel Server
 Kernel ServerKVS
 <a class=anchor href=#kernel-serverkvs>#</a>
 </h2>
-<p>O Segundo kernel herda da classe <code>Server</code>, onde a lógica de conexão já foi definida. Nesta classe <code>ServerKVS</code> é implementada a lógica específica de como será a interação com o cliente. Ou seja como será implementada a recepção, execução e retorno de comandos <strong>CRUD</strong> no sistema de Key Value Store, que envolve a interação direta com a base de dados. A qual pode ser vista em mais detalhes no menu lateral Base de Dados.</p>
+<p>O segundo kernel <code>ServerKVS</code> herda da classe <code>Server</code>, onde a lógica de conexão já foi definida. Aqui é implementada a lógica específica de como será a interação com o cliente, ou seja, como será implementada a recepção, execução e retorno de comandos <strong>CRUD</strong> no sistema de Key Value Store, que envolve a interação direta com a base de dados, a qual pode ser vista em mais detalhes no menu lateral Base de Dados.</p>
 <details open><summary>classe ServerKVS</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ServerKVS</span>(Server):
@@ -220,9 +223,9 @@ Kernel ServerKVS
 Kernel ServerAtacavel
 <a class=anchor href=#kernel-serveratacavel>#</a>
 </h2>
-<p>E finalemente, o terceiro kernel herda da classe <code>ServerKVS</code> e re-define a lógica de conexão. Essa nova classe <code>ServerAtacavel</code> não vai atacar as mensagens propriamente ditas, o responsável por isso é o cliente. Neste caso esta classe foi implementada somente para mostrar as mensagens abertas e cifradas sendo enviadas ao cliente, nada mais.</p>
+<p>E finalmente o terceiro kernel herda da classe <code>ServerKVS</code> e redefine a lógica de conexão. Essa nova classe <code>ServerAtacavel</code> não vai atacar as mensagens propriamente ditas, o responsável por isso é o cliente. Neste caso, esta classe foi implementada somente para mostrar as mensagens abertas e cifradas sendo enviadas ao cliente, nada mais.</p>
 <p>Para isso é necessário implementar o socket seguro de forma completamente diferente, onde precisamos de dois buffers que guardem as mensagens sendo recebidas pelo socket ssl (<strong>incoming</strong>) e as mensagens a serem enviadas pelo socket ssl (<strong>outgoing</strong>).</p>
-<p>A lógica mencionada foi preferida ao invés de utilizar <code>scapy</code> ou <code>pyshark</code> pelo fato de não precisar lidar com sudo e a captura de pacotes das portas envolvidas (que envolve <strong>sudo</strong>). Sendo então utilizado um código auxiliar que pode ser encontrado <a href=https://gitlab.com/fer22f/leilaloes/-/blob/main/inspectable/inspectable.py>neste repositório</a>, onde a classe <strong>InspectableListenerSocket</strong> foi implementada.</p>
+<p>A lógica mencionada foi preferida ao invés de utilizar <code>scapy</code> ou <code>pyshark</code> pelo fato de não precisar lidar com sudo e a captura de pacotes das portas envolvidas (que envolve <strong>sudo</strong>), sendo então utilizado um código auxiliar que pode ser encontrado <a href=https://gitlab.com/fer22f/leilaloes/-/blob/main/inspectable/inspectable.py>neste repositório</a>, onde a classe <strong>InspectableListenerSocket</strong> foi implementada.</p>
 <details open><summary>classe ClienteAtacavel</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ServerAtacavel</span>(ServerKVS):

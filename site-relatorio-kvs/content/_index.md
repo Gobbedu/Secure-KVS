@@ -43,9 +43,10 @@ Cada dupla deve fazer uma página Web contendo:
 O relatório deve ser manuscrito, e enviado por email **até 3/junho/2023** para eliasufpr at gmail.com com o assunto: "TopRedes 2023: KVS Seguro"
 
 {{< hint warning >}}
-**Relatório escolhido: vídeo no Youtube**
+**Relatório escolhido:**
 
-- Disponível em https://www.youtube.com/watch?v=dQw4w9WgXcQ
+- Pagina Web com relatório em texto.
+- Vídeo no youtube, disponível em https://www.youtube.com/watch?v=dQw4w9WgXcQ
   {{< /hint>}}
 
 Os logs de execução também podem ser acessados no menu lateral.

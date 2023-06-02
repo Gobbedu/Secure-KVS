@@ -11,7 +11,7 @@ Abaixo temos o Log de execução tanto do **servidor** quanto do **cliente**, pa
 
 ## Client \-\-show
 
-Da mesma forma, com o servidor rodando, ao executar `python client.py --show` podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl. (o trafego recebido pode ser visto no log de envio do server)
+Da mesma forma, com o servidor rodando, ao executar `python client.py --show` podemos visualizar não só a interação com a KVS shell, mas também podemos ver o tráfego sendo enviado pelo cliente usando ssl (o trafego recebido pode ser visto no log de envio do server).
 {{< hint warning >}}
 O primeiro trecho de execução mostra o tráfego referente ao _handshake_ entre o cliente e o servidor, onde podemos ver ao final da execução o tipo de criptografia utilizado para a comunicação.
 {{< /hint >}}
@@ -67,7 +67,7 @@ Bem-vindo ao shell do Key-Value Store. Digite 'help' para listar os comandos dis
 
 {{< /details >}}
 
-Em seguida, podemos ver o conteúdo das mensagens enviadas ao interagir com a shell do cliente. Da maneira que foi implementado, é possível ver a mensagem que está para ser enviada (**send: original**) e a mensagem sendo efetivamente enviada pelo ssl (**send: ssl**). Desse modo, a execução abaixo é uma prova de que o TLS **tem sigílo**, pois a mensagem que está sendo enviada pelo socket ssl claramente foi cifrada, em comparação com a mensagem original que está em plena vista.
+Em seguida podemos ver o conteúdo das mensagens enviadas ao interagir com a shell do cliente. Da maneira que foi implementado é possível ver a mensagem que está para ser enviada (**send: original**) e a mensagem sendo efetivamente enviada pelo ssl (**send: ssl**). Desse modo, a execução abaixo é uma prova de que o TLS **tem sigílo**, pois a mensagem que está sendo enviada pelo socket ssl claramente foi cifrada, em comparação com a mensagem original que está em plena vista.
 
 {{< details title="Tráfego cliente" open=true >}}
 
@@ -152,7 +152,7 @@ ssl.SSLError: [SSL: SSLV3_ALERT_BAD_RECORD_MAC] sslv3 alert bad record mac (_ssl
 
 {{< /details >}}
 
-Podemos ver que o erro apontado, `SSLV3_ALERT_BAD_RECORD_MAC`, indica que o protocolo não conseguiu verificar a autenticidade da mensagem - **Message Authentication Codes (MAC)**, devido a alteração que fizemos no corpo dela.
+Podemos ver que o erro apontado, `SSLV3_ALERT_BAD_RECORD_MAC`, indica que o protocolo não conseguiu verificar a autenticidade da mensagem - **Message Authentication Codes (MAC)**, devido à alteração que fizemos no corpo dela.
 
 {{< hint warning >}}
 Provando então a integridade do TLS para o cliente.
@@ -160,7 +160,12 @@ Provando então a integridade do TLS para o cliente.
 
 ## Server \-\-show
 
-Para ver o tráfego abaixo, é necessário rodar `python server.py --show` ou `python  server.py --edit`.
+Para ver o tráfego abaixo é necessário rodar uma das duas opções abaixo:
+
+```py
+python server.py --show
+python  server.py --edit
+```
 
 Não só do \-\-show, este log representa o tráfego no servidor para a flag \-\-edit também. Deste modo, o tráfego do lado dos servidor aparece como mostrado abaixo:
 
@@ -300,41 +305,44 @@ Conexão estabelecida com ('127.0.0.1', 33720)
 
 ```
 
-- Abaixo temos a resposta do servidor para a sequencia de comandos
+{{< /details >}}
+
+- Abaixo temos a resposta do servidor para a sequência de comandos
 
 1. show
-2. update 3 3
-3. create 4 4
-4. help
+2. update 4 4
+3. create 5 5
+4. delete 4
 5. exit
 
-{{< /details >}}
-======== send: original ========
-00000000: 7b 31 3a 20 31 2c 20 32 3a 20 32 2c 20 33 3a 20 {1: 1, 2: 2, 3:
-00000010: 34 2c 20 27 6a 6f 61 6f 27 3a 20 31 7d 4, 'joao': 1}
-========== send: ssl ==========
-00000000: 17 03 03 00 2e 50 65 5b 7f 3b 1d 96 c8 bf e8 05 .....Pe[;......
-00000010: 93 af 99 21 38 07 f8 c2 ac c5 41 18 f5 a7 a5 75 ...!8.....A....u
-00000020: 25 3a e8 67 af dd 86 09 32 35 67 58 e5 99 02 2b %:.g....25gX...+
-00000030: ac 8b 8c ...
-======== send: original ========
-00000000: 4e 6f 6e 65 None
-========== send: ssl ==========
-00000000: 17 03 03 00 15 0f 36 39 0e d5 7f af 38 10 03 80 ......69...8...
-00000010: a1 43 df 4c 27 7e a0 77 4c 03 .C.L'~.wL.
-======== send: original ========
-00000000: 4e 6f 6e 65 None
-========== send: ssl ==========
-00000000: 17 03 03 00 15 61 af e9 89 07 f7 a9 79 2b b9 8c .....a......y+..
-00000010: 15 1e 33 f0 5e 29 36 be 44 f5 ..3.^)6.D.
-======== send: original ========
-00000000: 7b 31 3a 20 31 2c 20 32 3a 20 32 2c 20 33 3a 20 {1: 1, 2: 2, 3:
-00000010: 33 2c 20 27 6a 6f 61 6f 27 3a 20 31 2c 20 34 3a 3, 'joao': 1, 4:
-00000020: 20 34 7d 4}
-========== send: ssl ==========
-00000000: 17 03 03 00 34 29 eb a5 9f 35 eb dc 44 3b e8 6d ....4)...5..D;.m
-00000010: b9 13 20 f3 8b ef 72 e1 00 88 e6 88 79 60 6b 2b .. ...r.....y`k+
-00000020: de 8b 1f 3a d3 a7 02 32  b6 fb f6 c3 9b 7f 30 7c  ...:...2.....0|
-00000030: 39 63 49 d2 55 13 4e 3a  60                       9cI.U.N:`
-
 {{< details title="Mensagem servidor" open=true >}}
+
+```txt
+======== send: original ========
+00000000: 7b 31 3a 20 31 2c 20 32  3a 20 32 2c 20 33 3a 20  {1: 1, 2: 2, 3:
+00000010: 33 2c 20 27 6a 6f 61 6f  27 3a 20 32 2c 20 34 3a  3, 'joao': 2, 4:
+00000020: 20 35 7d                                           5}
+========== send:  ssl ==========
+00000000: 17 03 03 00 34 fc fe ea  e6 ae c6 f7 e2 c0 58 cd  ....4.........X.
+00000010: 51 ef 4d 4d d9 f0 34 87  f0 00 49 6c ea ce 38 5e  Q.MM..4...Il..8^
+00000020: f3 3c 01 d9 88 f5 c1 1e  a9 7e 50 0d 2e 7a 33 2c  .<.......~P..z3,
+00000030: 9a cc 87 ca dd e9 f3 2f  2d                       ......./-
+======== send: original ========
+00000000: 4f 6b                                             Ok
+========== send:  ssl ==========
+00000000: 17 03 03 00 13 c3 8c 5a  61 fa 3f 5c 96 d0 90 57  .......Za.?\...W
+00000010: f0 e8 91 5b f6 8d f5 be                           ...[....
+======== send: original ========
+00000000: 4f 6b                                             Ok
+========== send:  ssl ==========
+00000000: 17 03 03 00 13 97 f6 ce  70 e3 8a 1e 6a fb 51 c4  ........p...j.Q.
+00000010: 1d f0 2e d8 0e 45 b6 b4                           .....E..
+======== send: original ========
+00000000: 4f 6b                                             Ok
+========== send:  ssl ==========
+00000000: 17 03 03 00 13 d7 00 ac  f7 95 31 ee 72 a7 fe 57  ..........1.r..W
+00000010: 8f 96 82 de c7 19 04 4d                           .......M
+
+```
+
+{{< /details >}}

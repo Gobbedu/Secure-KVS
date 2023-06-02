@@ -2,10 +2,10 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Base de Dados #  Key Value Store - KVS #  Um sistema KVS (Key-Value Store), ou Armazenamento Chave-Valor, é um tipo de banco de dados que armazena e recupera dados usando um modelo simples de pares de chave e valor. Nesse tipo de sistema, cada dado é associado a uma chave única, e essas chaves são usadas para recuperar os valores correspondentes. Um KVS não impõe nenhum esquema ou estrutura de dados específica, permitindo armazenar qualquer tipo de dado, como strings, números, objetos serializados, entre outros.">
+<meta name=description content="Base de Dados #  Key Value Store - KVS #  Um sistema KVS (Key-Value Store) ou Armazenamento Chave-Valor é um tipo de banco de dados que armazena e recupera dados usando um modelo simples de pares de chave e valor. Nesse tipo de sistema, cada dado é associado a uma chave única e essas chaves são usadas para recuperar os valores correspondentes. Um KVS não impõe nenhum esquema ou estrutura de dados específica, permitindo armazenar qualquer tipo de dado, como strings, números, objetos serializados, entre outros.">
 <meta name=theme-color content="#FFFFFF">
 <meta name=color-scheme content="light dark"><meta property="og:title" content>
-<meta property="og:description" content="Base de Dados #  Key Value Store - KVS #  Um sistema KVS (Key-Value Store), ou Armazenamento Chave-Valor, é um tipo de banco de dados que armazena e recupera dados usando um modelo simples de pares de chave e valor. Nesse tipo de sistema, cada dado é associado a uma chave única, e essas chaves são usadas para recuperar os valores correspondentes. Um KVS não impõe nenhum esquema ou estrutura de dados específica, permitindo armazenar qualquer tipo de dado, como strings, números, objetos serializados, entre outros.">
+<meta property="og:description" content="Base de Dados #  Key Value Store - KVS #  Um sistema KVS (Key-Value Store) ou Armazenamento Chave-Valor é um tipo de banco de dados que armazena e recupera dados usando um modelo simples de pares de chave e valor. Nesse tipo de sistema, cada dado é associado a uma chave única e essas chaves são usadas para recuperar os valores correspondentes. Um KVS não impõe nenhum esquema ou estrutura de dados específica, permitindo armazenar qualquer tipo de dado, como strings, números, objetos serializados, entre outros.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://gobbedu.github.io/Secure-KVS/docs/kvs-seguro/base-de-dados/"><meta property="article:section" content="docs">
 <title>Base De Dados | Relatório Redes III</title>
@@ -13,7 +13,7 @@
 <link rel=icon href=/Secure-KVS/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/Secure-KVS/book.min.1f20bb1eca1a001a8f11cb7468cc543388e0b3a832152dcb8e79c675fffb86ea.css integrity="sha256-HyC7HsoaABqPEct0aMxUM4jgs6gyFS3LjnnGdf/7huo=" crossorigin=anonymous>
 <script defer src=/Secure-KVS/flexsearch.min.js></script>
-<script defer src=/Secure-KVS/en.search.min.9af65184cf5f59be85126143804a769db227266dbf723909f9cf5fdde6dac6e1.js integrity="sha256-mvZRhM9fWb6FEmFDgEp2nbInJm2/cjkJ+c9f3ebaxuE=" crossorigin=anonymous></script>
+<script defer src=/Secure-KVS/en.search.min.cf96f38393cedac5c1e68bfbd95dc1b7340d15913b649323da35949135c54f2e.js integrity="sha256-z5bzg5PO2sXB5ov72V3BtzQNFZE7ZJMj2jWUkTXFTy4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr class=theme-light>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -43,6 +43,9 @@
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/cliente/>Cliente</a>
+</li>
+<li>
+<a href=/Secure-KVS/docs/kvs-seguro/inspecion%C3%A1vel/>Inspecionável</a>
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/servidor/>Servidor</a>
@@ -101,7 +104,7 @@ Base de Dados
 Key Value Store - KVS
 <a class=anchor href=#key-value-store---kvs>#</a>
 </h2>
-<p>Um sistema KVS (Key-Value Store), ou Armazenamento Chave-Valor, é um tipo de banco de dados que armazena e recupera dados usando um modelo simples de pares de chave e valor. Nesse tipo de sistema, cada dado é associado a uma chave única, e essas chaves são usadas para recuperar os valores correspondentes. Um KVS não impõe nenhum esquema ou estrutura de dados específica, permitindo armazenar qualquer tipo de dado, como strings, números, objetos serializados, entre outros.</p>
+<p>Um sistema KVS (Key-Value Store) ou Armazenamento Chave-Valor é um tipo de banco de dados que armazena e recupera dados usando um modelo simples de pares de chave e valor. Nesse tipo de sistema, cada dado é associado a uma chave única e essas chaves são usadas para recuperar os valores correspondentes. Um KVS não impõe nenhum esquema ou estrutura de dados específica, permitindo armazenar qualquer tipo de dado, como strings, números, objetos serializados, entre outros.</p>
 <blockquote class="book-hint info">
 Esta definição se encaixa perfeitamente com a utilização de dicionários em python, logo esta estrutura foi utilizada como base para realizar todas as operações CRUD na base de dados.
 </blockquote>
@@ -109,8 +112,8 @@ Esta definição se encaixa perfeitamente com a utilização de dicionários em 
 Arquivo
 <a class=anchor href=#arquivo>#</a>
 </h2>
-<p>Utilizar um <code>dict</code> em python como base de dados não é difícil, basta ter uma variável deste tipo. O problema é manter o estado desta base de dados ao desligar o servidor. Para resolver esse problema, foi utilizada a biblioteca python <code>pickle</code>, permitindo salvar um objeto de python em um arquivo .pkl, permitindo escrever e carregar este arquivo quando o servidor é ligado ou desligado.</p>
-<p>As funcionalidades do CRUD da base de dados foram implementadas como a classe <code>KeyValueStore</code>, e abaixo temos algumas partes importantes da classe destacadas. Sendo uma instância de <code>KeyValueStore</code> criada pela classe <code>Server</code>.</p>
+<p>Utilizar um <code>dict</code> em python como base de dados não é difícil, basta ter uma variável deste tipo. O problema é manter o estado desta base de dados ao desligar o servidor. Para resolver esse problema foi utilizada a biblioteca python <code>pickle</code>, permitindo salvar um objeto de python em um arquivo .pkl, podendo escrever e carregar este arquivo quando o servidor é ligado ou desligado.</p>
+<p>As funcionalidades do CRUD da base de dados foram implementadas como a classe <code>KeyValueStore</code> e abaixo temos algumas partes importantes da classe destacadas, sendo uma instância de <code>KeyValueStore</code> criada pela classe <code>Server</code>.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>KeyValueStore</span>:
     <span style=color:#66d9ef>def</span> __init__(self, filename):
         self<span style=color:#f92672>.</span>filename <span style=color:#f92672>=</span> filename
@@ -138,7 +141,7 @@ Arquivo
 Uso
 <a class=anchor href=#uso>#</a>
 </h2>
-<p>Como ao passar comandos e valores para o server é necessário transformar os comandos em uma string em python, foi implementado uma função wrapper que avalia o conteúdo da string de acordo com os padrões presentes em python. De modo que ao inserir valores não interpretáveis em python, uma mensagem de erro semelhante a que receberia em python será apresentada, como demonstrado abaixo:</p>
+<p>Como ao passar comandos e valores para o server é necessário transformar os comandos em uma string em python, foi implementado uma função wrapper que avalia o conteúdo da string de acordo com os padrões presentes em python. De modo que ao inserir valores não interpretáveis em python uma mensagem de erro semelhante a que seria receberia em python será apresentada, como demonstrado abaixo:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt>(KVS) show
 {1: 1, 2: 2, 3: 3, &#39;joao&#39;: 1, 4: 4}
 (KVS) update &#34;joao&#34; 2

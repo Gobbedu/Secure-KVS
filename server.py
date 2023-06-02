@@ -90,6 +90,9 @@ class ServerKVS(Server):
         except Exception as e:
             resp = f'Não entendi o comando - "{request}"\nErro: {str(e)}'
 
+        if(resp == "None" or resp == None):
+           resp = "Ok"
+
         return resp
 
 

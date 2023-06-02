@@ -48,11 +48,11 @@ Ok
 
 ## Kernel
 
-Existem três partes para o kernel do cliente. Onde cada uma serve um propósito diferente ao longo da execução e testes do lado do cliente.
+Existem três partes para o kernel do cliente, onde cada uma serve um propósito diferente ao longo da execução e testes do lado do cliente.
 
 ## Kernel Client
 
-O primeira kernel é a base para um cliente genérico `Client`, que apenas cria uma conexão segura com os valores presentes em `config.py`. Deixando a implementação da lógica de interação com o servidor para depois.
+O primeiro kernel é a base para um cliente genérico `Client`, que apenas cria uma conexão segura com os valores presentes em `config.py`, deixando a implementação da lógica de interação com o servidor para depois.
 
 {{< details title="classe Client" open=true >}}
 
@@ -83,7 +83,7 @@ class Client:
 
 ## Kernel ClientKVS
 
-O Segundo kernel herda da classe `Client`, onde a lógica de conexão já foi definida. Nesta classe `ClientKVS` é implementada a lógica específica de como será a interação com o servidor. Ou seja como será implementado o **CRUD** do sistema key value store, que implica apenas chamar a função que implementa a shell `cmd.Cmd` e enviar as mensagens para o cliente
+O Segundo kernel herda da classe `Client`, onde a lógica de conexão já foi definida. Nesta classe `ClientKVS` é implementada a lógica específica de como será a interação com o servidor, ou seja como será implementado o **CRUD** do sistema key value store, que implica apenas chamar a função que implementa a shell `cmd.Cmd` e enviar as mensagens para o cliente.
 
 {{< details title="classe ClientKVS" open=true >}}
 
@@ -95,7 +95,7 @@ class ClientKVS(Client):
 
 {{< /details >}}
 
-Onde apenas definimos que o comportamento do cliente será executar a interface `cmd.Cmd` codificada, onde temos as partes relevantes do seu kernel (omitindo o código de interface) ressaltadas abaixo:
+Para essa classe ClientKVS apenas definimos que o comportamento do cliente será executar a interface `cmd.Cmd` codificada, onde temos as partes relevantes do seu kernel (omitindo o código de interface) ressaltadas abaixo:
 
 {{< details title="classe Shell" open=false >}}
 
@@ -125,7 +125,7 @@ class KeyValueStoreShell(cmd.Cmd):
 
 ## Kernel ClienteAtacavel
 
-E finalemente, o terceiro kernel herda da classe `ClientKVS` e re-define a lógica de conexão. Essa nova classe `ClientAtacavel` vai emular um _bad actor_ tentando mexer nas mensagens criptografadas do cliente. Esta funcionalidade é demostrada no Log presente no menu lateral, e serve para provar que o protocolo TLS tem Integridade.
+E finalmente o terceiro kernel herda da classe `ClientKVS` e re-define a lógica de conexão. Essa nova classe `ClientAtacavel` vai emular um _bad actor_ tentando mexer nas mensagens criptografadas do cliente. Esta funcionalidade é demostrada no Log presente no menu lateral e serve para provar que o protocolo TLS tem Integridade.
 
 Para isso é necessário implementar o socket seguro de forma completamente diferente, onde precisamos de dois buffers que guardem as mensagens sendo recebidas pelo socket ssl (**incoming**) e as mensagens a serem enviadas pelo socket ssl (**outgoing**).
 

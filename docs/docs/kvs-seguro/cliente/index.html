@@ -17,7 +17,7 @@ Introdução cliente Bem-vindo ao shell do Key-Value Store.">
 <link rel=icon href=/Secure-KVS/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/Secure-KVS/book.min.1f20bb1eca1a001a8f11cb7468cc543388e0b3a832152dcb8e79c675fffb86ea.css integrity="sha256-HyC7HsoaABqPEct0aMxUM4jgs6gyFS3LjnnGdf/7huo=" crossorigin=anonymous>
 <script defer src=/Secure-KVS/flexsearch.min.js></script>
-<script defer src=/Secure-KVS/en.search.min.9af65184cf5f59be85126143804a769db227266dbf723909f9cf5fdde6dac6e1.js integrity="sha256-mvZRhM9fWb6FEmFDgEp2nbInJm2/cjkJ+c9f3ebaxuE=" crossorigin=anonymous></script>
+<script defer src=/Secure-KVS/en.search.min.cf96f38393cedac5c1e68bfbd95dc1b7340d15913b649323da35949135c54f2e.js integrity="sha256-z5bzg5PO2sXB5ov72V3BtzQNFZE7ZJMj2jWUkTXFTy4=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr class=theme-light>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -47,6 +47,9 @@ Introdução cliente Bem-vindo ao shell do Key-Value Store.">
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/cliente/ class=active>Cliente</a>
+</li>
+<li>
+<a href=/Secure-KVS/docs/kvs-seguro/inspecion%C3%A1vel/>Inspecionável</a>
 </li>
 <li>
 <a href=/Secure-KVS/docs/kvs-seguro/servidor/>Servidor</a>
@@ -147,12 +150,12 @@ Ok
 Kernel
 <a class=anchor href=#kernel>#</a>
 </h2>
-<p>Existem três partes para o kernel do cliente. Onde cada uma serve um propósito diferente ao longo da execução e testes do lado do cliente.</p>
+<p>Existem três partes para o kernel do cliente, onde cada uma serve um propósito diferente ao longo da execução e testes do lado do cliente.</p>
 <h2 id=kernel-client>
 Kernel Client
 <a class=anchor href=#kernel-client>#</a>
 </h2>
-<p>O primeira kernel é a base para um cliente genérico <code>Client</code>, que apenas cria uma conexão segura com os valores presentes em <code>config.py</code>. Deixando a implementação da lógica de interação com o servidor para depois.</p>
+<p>O primeiro kernel é a base para um cliente genérico <code>Client</code>, que apenas cria uma conexão segura com os valores presentes em <code>config.py</code>, deixando a implementação da lógica de interação com o servidor para depois.</p>
 <details open><summary>classe Client</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Client</span>:
@@ -182,7 +185,7 @@ Kernel Client
 Kernel ClientKVS
 <a class=anchor href=#kernel-clientkvs>#</a>
 </h2>
-<p>O Segundo kernel herda da classe <code>Client</code>, onde a lógica de conexão já foi definida. Nesta classe <code>ClientKVS</code> é implementada a lógica específica de como será a interação com o servidor. Ou seja como será implementado o <strong>CRUD</strong> do sistema key value store, que implica apenas chamar a função que implementa a shell <code>cmd.Cmd</code> e enviar as mensagens para o cliente</p>
+<p>O Segundo kernel herda da classe <code>Client</code>, onde a lógica de conexão já foi definida. Nesta classe <code>ClientKVS</code> é implementada a lógica específica de como será a interação com o servidor, ou seja como será implementado o <strong>CRUD</strong> do sistema key value store, que implica apenas chamar a função que implementa a shell <code>cmd.Cmd</code> e enviar as mensagens para o cliente.</p>
 <details open><summary>classe ClientKVS</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ClientKVS</span>(Client):
@@ -191,7 +194,7 @@ Kernel ClientKVS
 </code></pre></div>
 </div>
 </details>
-<p>Onde apenas definimos que o comportamento do cliente será executar a interface <code>cmd.Cmd</code> codificada, onde temos as partes relevantes do seu kernel (omitindo o código de interface) ressaltadas abaixo:</p>
+<p>Para essa classe ClientKVS apenas definimos que o comportamento do cliente será executar a interface <code>cmd.Cmd</code> codificada, onde temos as partes relevantes do seu kernel (omitindo o código de interface) ressaltadas abaixo:</p>
 <details><summary>classe Shell</summary>
 <div class=markdown-inner>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-py data-lang=py><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>KeyValueStoreShell</span>(cmd<span style=color:#f92672>.</span>Cmd):
@@ -220,7 +223,7 @@ Kernel ClientKVS
 Kernel ClienteAtacavel
 <a class=anchor href=#kernel-clienteatacavel>#</a>
 </h2>
-<p>E finalemente, o terceiro kernel herda da classe <code>ClientKVS</code> e re-define a lógica de conexão. Essa nova classe <code>ClientAtacavel</code> vai emular um <em>bad actor</em> tentando mexer nas mensagens criptografadas do cliente. Esta funcionalidade é demostrada no Log presente no menu lateral, e serve para provar que o protocolo TLS tem Integridade.</p>
+<p>E finalmente o terceiro kernel herda da classe <code>ClientKVS</code> e re-define a lógica de conexão. Essa nova classe <code>ClientAtacavel</code> vai emular um <em>bad actor</em> tentando mexer nas mensagens criptografadas do cliente. Esta funcionalidade é demostrada no Log presente no menu lateral e serve para provar que o protocolo TLS tem Integridade.</p>
 <p>Para isso é necessário implementar o socket seguro de forma completamente diferente, onde precisamos de dois buffers que guardem as mensagens sendo recebidas pelo socket ssl (<strong>incoming</strong>) e as mensagens a serem enviadas pelo socket ssl (<strong>outgoing</strong>).</p>
 <p>A lógica mencionada foi preferida ao invés de utilizar <code>scapy</code> ou <code>pyshark</code> pelo fato de não precisar lidar com sudo e a captura de pacotes das portas envolvidas (que envolve <strong>sudo</strong>). Sendo então utilizado um código auxiliar que pode ser encontrado <a href=https://gitlab.com/fer22f/leilaloes/-/blob/main/inspectable/inspectable.py>neste repositório</a>, onde a classe <strong>InspectableSocket</strong> foi implementada.</p>
 <details open><summary>classe ClienteAtacavel</summary>
