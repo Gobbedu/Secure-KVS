@@ -1,0 +1,22 @@
+@import "defaults";
+@import "variables";
+// @import "themes/{{ default "light" .Site.Params.BookTheme }}";
+// inclui ambos para usar no html
+.theme-light {
+    @include theme-light;
+}
+.theme-dark {
+    @include theme-dark;
+}
+
+@import "normalize";
+@import "utils";
+@import "main";
+@import "fonts";
+@import "print";
+
+@import "markdown";
+@import "shortcodes";
+
+// Custom defined styles
+@import "custom";

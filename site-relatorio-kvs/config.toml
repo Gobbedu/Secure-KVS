@@ -1,0 +1,7 @@
+baseURL = 'https://gobbedu.github.io/Secure-KVS/'
+languageCode = 'en-us'
+title = 'Relatório Redes III'
+themes = 'hugo-book'
+
+[params]
+    BookTheme = 'light'
