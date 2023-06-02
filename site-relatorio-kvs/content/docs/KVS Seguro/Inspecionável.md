@@ -6,7 +6,7 @@ Esta página explica como funciona o código presente em `inspectable.py` encont
 
 ## MemoryBIO
 
-A documentação para os detalhes da biblioteca utilizda podem ser encontrados na página do ssl abaixo:
+A documentação para os detalhes da biblioteca utilizada podem ser encontrados na página do ssl abaixo:
 
 - https://docs.python.org/3/library/ssl.html#memory-bio-support
 
