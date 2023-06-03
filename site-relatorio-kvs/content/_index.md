@@ -46,7 +46,6 @@ O relatório deve ser manuscrito, e enviado por email **até 3/junho/2023** para
 **Relatório escolhido:**
 
 - Pagina Web com relatório em texto.
-- Vídeo no youtube, disponível em https://www.youtube.com/watch?v=dQw4w9WgXcQ
   {{< /hint>}}
 
 Os logs de execução também podem ser acessados no menu lateral.
